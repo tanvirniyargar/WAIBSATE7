@@ -3,23 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Downloader Hub</title>
-    <!-- Bootstrap for better styling and tabs -->
+    <title>VIP Multi-Platform Video Downloader</title>
+    <!-- Bootstrap and Custom Fonts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Google AdSense Script (Replace with your publisher ID) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     <style>
-        body { background-color: #f8f9fa; }
-        .container { max-width: 600px; margin-top: 20px; }
-        .tab-content { margin-top: 20px; }
-        #preview { max-width: 100%; height: auto; display: none; }
-        #progress { display: none; }
-        #retryBtn { display: none; }
-        #caption { display: none; margin-top: 10px; }
-        .ad-banner { text-align: center; margin: 20px 0; }
+        body {
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            color: #f4f4f4;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+        .vip-header {
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+        }
+        .vip-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        .vip-badge {
+            background: #FFD700;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .container {
+            max-width: 700px;
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        .btn-vip {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-vip:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+        }
+        .progress {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            transition: width 0.5s ease;
+        }
+        .alert {
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        video {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .history {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .history h5 {
+            color: #FFD700;
+        }
+        .ad-banner {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ccc;
+            margin-top: 30px;
+        }
+        .footer a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
+    <!-- VIP Header -->
+    <div class="vip-header fade-in">
+        <h1><i class="fas fa-crown"></i> VIP Multi-Platform Video Downloader <span class="vip-badge">PREMIUM</span></h1>
+        <p>Exclusive downloads from Instagram, YouTube, and Facebook in one VIP hub.</p>
+    </div>
+
     <!-- Top Ad Banner -->
     <div class="ad-banner">
         <ins class="adsbygoogle"
@@ -33,95 +129,47 @@
         </script>
     </div>
 
-    <div class="container">
-        <h1 class="text-center mb-4">Video Downloader Hub</h1>
-        <p class="text-center">Download videos from Instagram, YouTube, and Facebook in one place. Select a tab below.</p>
-
-        <!-- Tabs for Navigation -->
-        <ul class="nav nav-tabs" id="downloaderTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="instagram-tab" data-bs-toggle="tab" data-bs-target="#instagram" type="button" role="tab">Instagram Reels</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="youtube-tab" data-bs-toggle="tab" data-bs-target="#youtube" type="button" role="tab">YouTube Videos</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="facebook-tab" data-bs-toggle="tab" data-bs-target="#facebook" type="button" role="tab">Facebook Videos</button>
-            </li>
-        </ul>
-
-        <div class="tab-content" id="downloaderTabsContent">
-            <!-- Instagram Tab -->
-            <div class="tab-pane fade show active" id="instagram" role="tabpanel">
-                <h3 class="mt-3">Instagram Reels Downloader</h3>
-                <p>Paste a public Instagram Reel URL.</p>
-                <div class="input-group mb-3">
-                    <input type="text" id="reelUrl" class="form-control" placeholder="https://www.instagram.com/reel/..." />
-                    <button class="btn btn-primary" id="fetchBtnInsta" onclick="fetchReel()">Fetch & Download</button>
-                </div>
-                <button class="btn btn-warning mb-3" id="retryBtnInsta" onclick="fetchReel()">Retry</button>
-                <div id="progressInsta" class="progress mb-3">
-                    <div class="progress-bar" role="progressbar" style="width: 0%"></div>
-                </div>
-                <div id="resultInsta" class="alert alert-info" style="display: none;"></div>
-                <video id="previewInsta" controls class="mt-3"></video>
-                <div id="captionInsta" class="alert alert-secondary">
-                    <strong>Caption:</strong> <span id="captionTextInsta">No caption available.</span>
-                </div>
-                <div id="downloadOptionsInsta" style="display: none;">
-                    <h5>Select Quality:</h5>
-                    <select id="qualitySelectInsta" class="form-select mb-3"></select>
-                    <button class="btn btn-success" onclick="downloadSelected('insta')">Download Selected</button>
-                </div>
-            </div>
-
-            <!-- YouTube Tab -->
-            <div class="tab-pane fade" id="youtube" role="tabpanel">
-                <h3 class="mt-3">YouTube Video Downloader</h3>
-                <p>Paste a YouTube video URL.</p>
-                <div class="input-group mb-3">
-                    <input type="text" id="videoUrlYT" class="form-control" placeholder="https://www.youtube.com/watch?v=..." />
-                    <button class="btn btn-primary" id="fetchBtnYT" onclick="fetchVideoYT()">Fetch & Download</button>
-                </div>
-                <button class="btn btn-warning mb-3" id="retryBtnYT" onclick="fetchVideoYT()">Retry</button>
-                <div id="progressYT" class="progress mb-3">
-                    <div class="progress-bar" role="progressbar" style="width: 0%"></div>
-                </div>
-                <div id="resultYT" class="alert alert-info" style="display: none;"></div>
-                <video id="previewYT" controls class="mt-3"></video>
-                <div id="captionYT" class="alert alert-secondary">
-                    <strong>Title:</strong> <span id="captionTextYT">No title available.</span>
-                </div>
-                <div id="downloadOptionsYT" style="display: none;">
-                    <h5>Select Quality:</h5>
-                    <select id="qualitySelectYT" class="form-select mb-3"></select>
-                    <button class="btn btn-success" onclick="downloadSelected('yt')">Download Selected</button>
-                </div>
-            </div>
-
-            <!-- Facebook Tab -->
-            <div class="tab-pane fade" id="facebook" role="tabpanel">
-                <h3 class="mt-3">Facebook Video Downloader</h3>
-                <p>Paste a Facebook video URL.</p>
-                <div class="input-group mb-3">
-                    <input type="text" id="videoUrlFB" class="form-control" placeholder="https://www.facebook.com/watch?v=..." />
-                    <button class="btn btn-primary" id="fetchBtnFB" onclick="fetchVideoFB()">Fetch & Download</button>
-                </div>
-                <button class="btn btn-warning mb-3" id="retryBtnFB" onclick="fetchVideoFB()">Retry</button>
-                <div id="progressFB" class="progress mb-3">
-                    <div class="progress-bar" role="progressbar" style="width: 0%"></div>
-                </div>
-                <div id="resultFB" class="alert alert-info" style="display: none;"></div>
-                <video id="previewFB" controls class="mt-3"></video>
-                <div id="captionFB" class="alert alert-secondary">
-                    <strong>Title:</strong> <span id="captionTextFB">No title available.</span>
-                </div>
-                <div id="downloadOptionsFB" style="display: none;">
-                    <h5>Select Quality:</h5>
-                    <select id="qualitySelectFB" class="form-select mb-3"></select>
-                    <button class="btn btn-success" onclick="downloadSelected('fb')">Download Selected</button>
-                </div>
-            </div>
+    <div class="container fade-in">
+        <p class="text-center">Paste any Instagram Reel, YouTube Video, or Facebook Video URL for instant VIP download.</p>
+        
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-link"></i></span>
+            <input type="text" id="videoUrl" class="form-control" placeholder="https://www.instagram.com/reel/... or youtube.com/watch?v=... or facebook.com/..." />
+            <button class="btn btn-vip" id="fetchBtn" onclick="fetchVideo()"><i class="fas fa-download"></i> Fetch VIP Download</button>
+        </div>
+        
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="vipMode" />
+            <label class="form-check-label" for="vipMode">
+                Enable VIP Mode (Auto-download after fetch)
+            </label>
+        </div>
+        
+        <button class="btn btn-warning mb-3" id="retryBtn" onclick="fetchVideo()" style="display: none;"><i class="fas fa-redo"></i> Retry</button>
+        
+        <div id="progress" class="progress mb-3" style="display: none;">
+            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+        </div>
+        
+        <div id="result" class="alert alert-info" style="display: none;"></div>
+        
+        <video id="preview" controls class="mt-3" style="display: none;"></video>
+        
+        <div id="caption" class="alert alert-secondary mt-3" style="display: none;">
+            <strong><i class="fas fa-comment"></i> Title/Caption:</strong> <span id="captionText">No title/caption available.</span>
+        </div>
+        
+        <div id="downloadOptions" style="display: none;">
+            <h5><i class="fas fa-cogs"></i> Select VIP Quality:</h5>
+            <select id="qualitySelect" class="form-select mb-3"></select>
+            <button class="btn btn-vip" onclick="downloadSelected()"><i class="fas fa-arrow-down"></i> Download Now</button>
+        </div>
+        
+        <div class="history">
+            <h5><i class="fas fa-history"></i> Recent Downloads (VIP History)</h5>
+            <ul id="historyList" class="list-group list-group-flush">
+                <!-- History items will be added here -->
+            </ul>
         </div>
     </div>
 
@@ -138,27 +186,44 @@
         </script>
     </div>
 
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2023 VIP Downloader. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact VIP Support</a></p>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        let reelData = null;
-        let videoDataYT = null;
-        let videoDataFB = null;
+        let videoData = null;
+        let downloadHistory = JSON.parse(localStorage.getItem('vipHistory')) || [];
 
-        // Instagram Fetch Function
-        async function fetchReel() {
-            const url = document.getElementById('reelUrl').value;
-            const resultDiv = document.getElementById('resultInsta');
-            const progressBar = document.querySelector('#progressInsta .progress-bar');
-            const progressDiv = document.getElementById('progressInsta');
-            const preview = document.getElementById('previewInsta');
-            const captionDiv = document.getElementById('captionInsta');
-            const captionText = document.getElementById('captionTextInsta');
-            const downloadOptions = document.getElementById('downloadOptionsInsta');
-            const qualitySelect = document.getElementById('qualitySelectInsta');
-            const retryBtn = document.getElementById('retryBtnInsta');
-            const fetchBtn = document.getElementById('fetchBtnInsta');
+        // Load history on page load
+        function loadHistory() {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '';
+            downloadHistory.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item bg-transparent text-light';
+                li.innerHTML = `<i class="fas fa-video"></i> ${item.title || 'Video'} - ${new Date(item.date).toLocaleString()}`;
+                historyList.appendChild(li);
+            });
+        }
+        loadHistory();
 
-            // Reset UI
+        async function fetchVideo() {
+            const url = document.getElementById('videoUrl').value;
+            const resultDiv = document.getElementById('result');
+            const progressBar = document.querySelector('.progress-bar');
+            const progressDiv = document.getElementById('progress');
+            const preview = document.getElementById('preview');
+            const captionDiv = document.getElementById('caption');
+            const captionText = document.getElementById('captionText');
+            const downloadOptions = document.getElementById('downloadOptions');
+            const qualitySelect = document.getElementById('qualitySelect');
+            const retryBtn = document.getElementById('retryBtn');
+            const fetchBtn = document.getElementById('fetchBtn');
+            const vipMode = document.getElementById('vipMode').checked;
+
+            // Reset UI with animations
             resultDiv.style.display = 'none';
             progressDiv.style.display = 'block';
             progressBar.style.width = '0%';
@@ -169,7 +234,7 @@
             fetchBtn.disabled = true;
 
             if (!navigator.onLine) {
-                resultDiv.innerHTML = 'You are offline. Check your internet.';
+                resultDiv.innerHTML = '<i class="fas fa-wifi"></i> Offline. Check your VIP connection.';
                 resultDiv.className = 'alert alert-danger';
                 resultDiv.style.display = 'block';
                 progressDiv.style.display = 'none';
@@ -178,8 +243,25 @@
                 return;
             }
 
-            if (!url || !url.includes('instagram.com/reel/')) {
-                resultDiv.innerHTML = 'Enter a valid Instagram Reel URL.';
+            if (!url) {
+                resultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please enter a URL.';
+                resultDiv.className = 'alert alert-danger';
+                resultDiv.style.display = 'block';
+                progressDiv.style.display = 'none';
+                fetchBtn.disabled = false;
+                return;
+            }
+
+            // Detect platform
+            let platform = '';
+            if (url.includes('instagram.com/reel/')) {
+                platform = 'instagram';
+            } else if (url.includes('youtube.com/watch?v=')) {
+                platform = 'youtube';
+            } else if (url.includes('facebook.com')) {
+                platform = 'facebook';
+            } else {
+                resultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Invalid URL. Only Instagram Reels, YouTube Videos, or Facebook Videos are supported.';
                 resultDiv.className = 'alert alert-danger';
                 resultDiv.style.display = 'block';
                 progressDiv.style.display = 'none';
@@ -189,46 +271,90 @@
 
             try {
                 progressBar.style.width = '25%';
-                await new Promise(resolve => setTimeout(resolve, 500));
+                await new Promise(resolve => setTimeout(resolve, 300));
                 progressBar.style.width = '50%';
 
-                const apiUrl = `https://api.instadownloader.org/download?url=${encodeURIComponent(url)}`;
+                let apiUrl = '';
+                if (platform === 'instagram') {
+                    apiUrl = `https://api.instadownloader.org/download?url=${encodeURIComponent(url)}`;
+                } else if (platform === 'youtube') {
+                    apiUrl = `https://api.y2mate.com/v2/analyze?url=${encodeURIComponent(url)}`;
+                } else if (platform === 'facebook') {
+                    apiUrl = `https://api.fbdown.net/download?url=${encodeURIComponent(url)}`;
+                }
+
                 const response = await fetch(apiUrl);
                 const data = await response.json();
 
                 progressBar.style.width = '75%';
-                await new Promise(resolve => setTimeout(resolve, 500));
+                await new Promise(resolve => setTimeout(resolve, 300));
                 progressBar.style.width = '100%';
 
-                if (data.success && data.video_url) {
-                    reelData = data;
-                    resultDiv.innerHTML = 'Reel fetched! Preview and caption below.';
+                let success = false;
+                let videoUrl = '';
+                let title = '';
+                let qualities = [];
+
+                if (platform === 'instagram' && data.success && data.video_url) {
+                    success = true;
+                    videoUrl = data.video_url;
+                    title = data.caption || 'Instagram Reel';
+                    qualities = data.qualities || [];
+                } else if (platform === 'youtube' && data.status === 'ok' && data.vid) {
+                    success = true;
+                    videoUrl = data.video_url || '';
+                    title = data.title || 'YouTube Video';
+                    qualities = data.formats || [];
+                } else if (platform === 'facebook' && data.success && data.video_url) {
+                    success = true;
+                    videoUrl = data.video_url;
+                    title = data.title || 'Facebook Video';
+                    qualities = data.qualities || [];
+                }
+
+                if (success) {
+                    videoData = { videoUrl, title, qualities, platform };
+                    resultDiv.innerHTML = `<i class="fas fa-check-circle"></i> VIP Fetch Complete for ${platform.charAt(0).toUpperCase() + platform.slice(1)}! Preview below.`;
                     resultDiv.className = 'alert alert-success';
                     resultDiv.style.display = 'block';
 
-                    preview.src = data.video_url;
-                    preview.style.display = 'block';
+                    if (videoUrl) {
+                        preview.src = videoUrl;
+                        preview.style.display = 'block';
+                    }
 
-                    captionText.innerText = data.caption || 'No caption available.';
+                    captionText.innerText = title;
                     captionDiv.style.display = 'block';
 
                     qualitySelect.innerHTML = '';
-                    if (data.qualities && data.qualities.length > 0) {
-                        data.qualities.forEach((q, i) => {
+                    if (qualities.length > 0) {
+                        qualities.forEach((q, i) => {
                             const opt = document.createElement('option');
                             opt.value = i;
-                            opt.text = `${q.resolution} (${q.size})`;
+                            opt.text = `${q.quality || q.resolution} (${q.size}) - VIP Quality`;
                             qualitySelect.appendChild(opt);
                         });
                     } else {
-                        qualitySelect.innerHTML = '<option value="0">Default Quality</option>';
+                        qualitySelect.innerHTML = '<option value="0">Default VIP Quality</option>';
                     }
                     downloadOptions.style.display = 'block';
+
+                    // VIP Mode: Auto-download
+                    if (vipMode) {
+                        setTimeout(() => downloadSelected(), 1000);
+                    }
+
+                    // Add to history
+                    const historyItem = { title, date: new Date().toISOString(), platform };
+                    downloadHistory.unshift(historyItem);
+                    if (downloadHistory.length > 5) downloadHistory.pop();
+                    localStorage.setItem('vipHistory', JSON.stringify(downloadHistory));
+                    loadHistory();
                 } else {
-                    throw new Error('Failed to fetch. Check URL or API.');
+                    throw new Error(`VIP Fetch Failed for ${platform}. Check URL.`);
                 }
             } catch (error) {
-                resultDiv.innerHTML = 'Error: ' + error.message;
+                resultDiv.innerHTML = '<i class="fas fa-times-circle"></i> Error: ' + error.message;
                 resultDiv.className = 'alert alert-danger';
                 resultDiv.style.display = 'block';
                 retryBtn.style.display = 'block';
@@ -238,153 +364,22 @@
             }
         }
 
-        // YouTube Fetch Function
-        async function fetchVideoYT() {
-            const url = document.getElementById('videoUrlYT').value;
-            const resultDiv = document.getElementById('resultYT');
-            const progressBar = document.querySelector('#progressYT .progress-bar');
-            const progressDiv = document.getElementById('progressYT');
-            const preview = document.getElementById('previewYT');
-            const captionDiv = document.getElementById('captionYT');
-            const captionText = document.getElementById('captionTextYT');
-            const downloadOptions = document.getElementById('downloadOptionsYT');
-            const qualitySelect = document.getElementById('qualitySelectYT');
-            const retryBtn = document.getElementById('retryBtnYT');
-            const fetchBtn = document.getElementById('fetchBtnYT');
+        function downloadSelected() {
+            if (!videoData) return;
+            const selectedIndex = document.getElementById('qualitySelect').value;
+            let downloadUrl = videoData.videoUrl;
 
-            // Reset UI (similar to Instagram)
-            resultDiv.style.display = 'none';
-            progressDiv.style.display = 'block';
-            progressBar.style.width = '0%';
-            preview.style.display = 'none';
-            captionDiv.style.display = 'none';
-            downloadOptions.style.display = 'none';
-            retryBtn.style.display = 'none';
-            fetchBtn.disabled = true;
-
-            if (!navigator.onLine) {
-                resultDiv.innerHTML = 'You are offline. Check your internet.';
-                resultDiv.className = 'alert alert-danger';
-                resultDiv.style.display = 'block';
-                progressDiv.style.display = 'none';
-                retryBtn.style.display = 'block';
-                fetchBtn.disabled = false;
-                return;
+            if (videoData.qualities && videoData.qualities[selectedIndex]) {
+                downloadUrl = videoData.qualities[selectedIndex].url || videoData.qualities[selectedIndex].video_url;
             }
 
-            if (!url || !url.includes('youtube.com/watch?v=')) {
-                resultDiv.innerHTML = 'Enter a valid YouTube URL.';
-                resultDiv.className = 'alert alert-danger';
-                resultDiv.style.display = 'block';
-                progressDiv.style.display = 'none';
-                fetchBtn.disabled = false;
-                return;
-            }
-
-            try {
-                progressBar.style.width = '25%';
-                await new Promise(resolve => setTimeout(resolve, 500));
-                progressBar.style.width = '50%';
-
-                const apiUrl = `https://api.y2mate.com/v2/analyze?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-
-                progressBar.style.width = '75%';
-                await new Promise(resolve => setTimeout(resolve, 500));
-                progressBar.style.width = '100%';
-
-                if (data.status === 'ok' && data.vid) {
-                    videoDataYT = data;
-                    resultDiv.innerHTML = 'Video fetched! Preview and title below.';
-                    resultDiv.className = 'alert alert-success';
-                    resultDiv.style.display = 'block';
-
-                    if (data.thumbnail) preview.poster = data.thumbnail;
-                    if (data.video_url) preview.src = data.video_url;
-                    preview.style.display = 'block';
-
-                    captionText.innerText = data.title || 'No title available.';
-                    captionDiv.style.display = 'block';
-
-                    qualitySelect.innerHTML = '';
-                    if (data.formats && data.formats.length > 0) {
-                        data.formats.forEach((f, i) => {
-                            const opt = document.createElement('option');
-                            opt.value = i;
-                            opt.text = `${f.quality} (${f.size})`;
-                            qualitySelect.appendChild(opt);
-                        });
-                    } else {
-                        qualitySelect.innerHTML = '<option value="0">Default Quality</option>';
-                    }
-                    downloadOptions.style.display = 'block';
-                } else {
-                    throw new Error('Failed to fetch. Check URL or API.');
-                }
-            } catch (error) {
-                resultDiv.innerHTML = 'Error: ' + error.message;
-                resultDiv.className = 'alert alert-danger';
-                resultDiv.style.display = 'block';
-                retryBtn.style.display = 'block';
-            } finally {
-                progressDiv.style.display = 'none';
-                fetchBtn.disabled = false;
-            }
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = `vip_${videoData.platform}_video.mp4`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
-
-        // Facebook Fetch Function (Now Complete)
-        async function fetchVideoFB() {
-            const url = document.getElementById('videoUrlFB').value;
-            const resultDiv = document.getElementById('resultFB');
-            const progressBar = document.querySelector('#progressFB .progress-bar');
-            const progressDiv = document.getElementById('progressFB');
-            const preview = document.getElementById('previewFB');
-            const captionDiv = document.getElementById('captionFB');
-            const captionText = document.getElementById('captionTextFB');
-            const downloadOptions = document.getElementById('downloadOptionsFB');
-            const qualitySelect = document.getElementById('qualitySelectFB');
-            const retryBtn = document.getElementById('retryBtnFB');
-            const fetchBtn = document.getElementById('fetchBtnFB');
-
-            // Reset UI (similar to Instagram)
-            resultDiv.style.display = 'none';
-            progressDiv.style.display = 'block';
-            progressBar.style.width = '0%';
-            preview.style.display = 'none';
-            captionDiv.style.display = 'none';
-            downloadOptions.style.display = 'none';
-            retryBtn.style.display = 'none';
-            fetchBtn.disabled = true;
-
-            if (!navigator.onLine) {
-                resultDiv.innerHTML = 'You are offline. Check your internet.';
-                resultDiv.className = 'alert alert-danger';
-                resultDiv.style.display = 'block';
-                progressDiv.style.display = 'none';
-                retryBtn.style.display = 'block';
-                fetchBtn.disabled = false;
-                return;
-            }
-
-            if (!url || !url.includes('facebook.com')) {
-                resultDiv.innerHTML = 'Enter a valid Facebook URL.';
-                resultDiv.className = 'alert alert-danger';
-                resultDiv.style.display = 'block';
-                progressDiv.style.display = 'none';
-                fetchBtn.disabled = false;
-                return;
-            }
-
-            try {
-                progressBar.style.width = '25%';
-                await new Promise(resolve => setTimeout(resolve, 500));
-                progressBar.style.width = '50%';
-
-                const apiUrl = `https://api.fbdown.net/download?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl);
-                const data = await
-                }
     </script>
 </body>
 </html>
